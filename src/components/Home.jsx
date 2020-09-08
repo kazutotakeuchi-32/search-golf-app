@@ -33,13 +33,12 @@ class Home extends React.Component{
      }
   }
   onFormSubmit = async(event)=>{
-
     try {
       event.preventDefault();
       this.setState({loading:true})
       // ここで意図的に例外をを起こします。
       // throw 'error'
-      const response = await axios.get('https://l1kwik11ne.execute-api.ap-northeast-1.amazonaws.com/production/golf-courses', {
+      const response = await axios.get('https://zojbnyc6g5.execute-api.ap-northeast-1.amazonaws.com/production/golf-courses', {
         params: { date: format(this.state.date, 'yyyyMMdd'), budget: this.state.budget, departure: this.state.departure, duration: this.state.duration }
       });
       this.setState({ planCount: response.data.count, plans: response.data.plans })
@@ -47,6 +46,7 @@ class Home extends React.Component{
   }
   catch (e) {
     this.setState({ error: e })
+    console.log(this.state.error)
   }
 
     // event.preventDefault();
